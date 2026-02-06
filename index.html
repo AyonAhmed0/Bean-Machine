@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bean Machine</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .app-header h1{font-size:24px;line-height:1.2;margin:0}
+    @media (max-width:760px){
+      .app-header h1{font-size:20px}
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="https://i.postimg.cc/pr3K1KL4/The-Bean-Machine-GTA4-logo.webp" alt="Bean Machine Logo" style="height: 40px; margin-right: 15px; vertical-align: middle;">
+      <h1 style="display: inline-block; vertical-align: middle; margin: 0;">☕ Bean Machine ☕</h1>
+    </div>
+    <div class="header-actions">
+      <button id="packagesBtn" class="btn">📋 Package details</button>
+      <button id="recipesBtn" class="btn">📋 Recipes</button>
+      <button id="copyBtn" class="btn">📋 Copy receipt</button>
+      <button id="clearBtn" class="btn btn-danger">Clear all</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel add-item">
+      <h2>Add item</h2>
+      <form id="addForm" autocomplete="off">
+        <div class="grid">
+          <label for="nameInput">
+            Item Name
+            <input type="text" id="nameInput" placeholder="e.g., Waffle" required aria-describedby="nameHelp" />
+            <span id="nameHelp" class="sr-only">Enter the name of the menu item</span>
+          </label>
+          <label for="priceInput">
+            Price ($)
+            <input type="number" id="priceInput" min="0" step="0.01" placeholder="0.00" required aria-describedby="priceHelp" />
+            <span id="priceHelp" class="sr-only">Enter the price in dollars and cents</span>
+          </label>
+          <label for="qtyInput">
+            Quantity
+            <input type="number" id="qtyInput" min="1" step="1" value="1" required aria-describedby="qtyHelp" />
+            <span id="qtyHelp" class="sr-only">Enter the quantity of items</span>
+          </label>
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+
+
+    <section class="panel quick-menu">
+      <h2>Quick menu</h2>
+      <div id="quickMenu">
+        <div class="qm-group">
+          <h3>🍦 ICE CREAM</h3>
+          <div class="chip-list">
+            <button class="chip" data-name="Vanila Ice Cream" data-price="80">🍦 Vanila Ice Cream — $80</button>
+            <button class="chip" data-name="Strawberry Ice Cream" data-price="60">🍦 Strawberry Ice Cream — $60</button>
+            <button class="chip" data-name="Apple Ice Cream" data-price="80">🍦 Apple Ice Cream — $80</button>
+            <button class="chip" data-name="Banana Ice Cream" data-price="80">🍦 Banana Ice Cream — $80</button>
+            <button class="chip" data-name="Lemon Ice Cream" data-price="80">🍦 Lemon Ice Cream — $80</button>
+            <button class="chip" data-name="Mango Ice Cream" data-price="80">🍦 Mango Ice Cream — $80</button>
+            <button class="chip" data-name="Pomegranate Ice Cream" data-price="80">🍦 Pomegranate Ice Cream — $80</button>
+            <button class="chip" data-name="Watermelon Ice Cream" data-price="100">🍦 Watermelon Ice Cream — $100</button>
+            <button class="chip" data-name="Chocolate Ice Cream" data-price="100">🍦 Chocolate Ice Cream — $100</button>
+          </div>
+        </div>
+
+        <div class="qm-group">
+          <h3>☕ DRINKS</h3>
+          <div class="chip-list">
+            <button class="chip" data-name="Water" data-price="20">💧 Water — $20</button>
+            <button class="chip" data-name="Espresso" data-price="50">☕ Espresso — $50</button>
+            <button class="chip" data-name="Bean Coffee" data-price="50">☕ Bean Coffee — $50</button>
+            <button class="chip" data-name="Cappuccino" data-price="50">☕ Cappuccino — $50</button>
+            <button class="chip" data-name="Hot Chocolate" data-price="50">🍫 Hot Chocolate — $50</button>
+            <button class="chip" data-name="Iced Latte" data-price="60">🥶 Iced Latte — $60</button>
+            <button class="chip" data-name="Pink Lemonade" data-price="60">🍹 Pink Lemonade — $60</button>
+            <button class="chip" data-name="Macha" data-price="50">🍵 Macha — $50</button>
+            <button class="chip" data-name="Pigeon Milk" data-price="60">🐦 Pigeon Milk — $60</button>
+            <button class="chip" data-name="Penguin Milk" data-price="60">🐧 Penguin Milk — $60</button>
+          </div>
+        </div>
+
+        <div class="qm-group">
+          <h3>🥞 FOOD ITEMS</h3>
+          <div class="chip-list">
+            <button class="chip" data-name="Waffle" data-price="60">🧇 Waffle — $60</button>
+            <button class="chip" data-name="Donut" data-price="50">🍩 Donut — $50</button>
+            <button class="chip" data-name="Cream Cookie" data-price="50">🥞 Cream Cookie — $50</button>
+            <button class="chip" data-name="Cup Cake" data-price="50">🧁 Cup Cake — $50</button>
+            <button class="chip" data-name="Hotdog" data-price="80">🌭 Hotdog — $80</button>
+            <button class="chip" data-name="Burrito" data-price="90">🌯 Burrito — $90</button>
+            <button class="chip" data-name="Chocolate Cake" data-price="250">🍫 Chocolate Cake — $250</button>
+            <button class="chip" data-name="Lemon Cake" data-price="300">🍋 Lemon Cake — $300</button>
+            <button class="chip" data-name="Cheese Cake" data-price="60">🥞 Cheese Cake — $60</button>
+            <button class="chip" data-name="Berry Cake" data-price="350">🍓 Berry Cake — $350</button>
+            <button class="chip" data-name="Kinder Joy" data-price="1200">🧸 Kinder Joy — $1200</button>
+            <button class="chip" data-name="Reese's Pieces" data-price="40">🙅 Reese's Pieces — $40</button>
+          </div>
+        </div>
+
+        <div class="qm-group">
+          <h3>📦 MENU PACKAGES</h3>
+          <div class="chip-list">
+            <button class="chip" title="🧇 Waffle ×6 | 🐦 Pigeon Milk ×3 | 🍹 Pink Lemonade ×2" data-name="PD / EMS / State / DOJ Meal" data-price="500">☕ PD / EMS / State / DOJ Meal — $500</button>
+            <button class="chip" title="🍋 Lemon Cake ×1 | 🧇 Waffle ×5 | 🍫 Hot Chocolate ×2 | ☕ Cappuccino ×2 | 🍹 Pink Lemonade ×1 | 🍵 Macha ×1" data-name="Bean Machine Special" data-price="750">☕ Bean Machine Special — $750</button>
+            <button class="chip" title="🍫 Chocolate Cake ×1 | 🧇 Waffle ×3 | 🍫 Hot Chocolate ×2 | 🍹 Pink Lemonade ×2" data-name="Medium Pack" data-price="500">☕ Medium Pack — $500</button>
+            <button class="chip" title="🧇 Waffle ×3 | 🍵 Macha ×2 | 🍦 Watermelon Ice Cream ×1" data-name="Regular Meal" data-price="300">☕ Regular Meal — $300</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel items">
+      <h2>Items</h2>
+      <div class="table-wrap">
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody">
+            <tr class="empty">
+              <td colspan="6">No items yet. Add from above or use quick menu.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel totals">
+      <h2>Totals</h2>
+      <div class="totals-grid">
+        <div class="row">
+          <span>Subtotal</span>
+          <strong id="subtotal">$0.00</strong>
+        </div>
+        <div class="row">
+          <label for="taxInput">Tax (%)</label>
+          <input id="taxInput" type="number" step="0.01" min="0" value="0" />
+        </div>
+        <div class="row">
+          <label for="discountInput">Discount (%)</label>
+          <input id="discountInput" type="number" step="0.01" min="0" value="0" />
+        </div>
+        <div class="row">
+          <label for="dateInput">Date (optional)</label>
+          <input id="dateInput" type="date" />
+        </div>
+        <div class="row">
+          <label for="cidInput">CID (optional)</label>
+          <input id="cidInput" type="text" placeholder="Customer ID" />
+        </div>
+        <div class="row">
+          <label for="staffSelect">Staff Member</label>
+          <select id="staffSelect" required>
+            <option value="">Select Staff Member</option>
+            <option value="কুদ্দুস আলী">কুদ্দুস আলী</option>
+            <option value="Sumsul Arefin">Sumsul Arefin</option>
+            <option value="Dollar Massimo Kane">Dollar Massimo Kane</option>
+            <option value="Leo Marconi">Leo Marconi</option>
+            <option value="Anaya Wales">Anaya Wales</option>
+            <option value="Azzy Adi">Azzy Adi</option>
+            <option value="Arafat Ahmed">Arafat Ahmed</option>
+            <option value="Dante Dragna">Dante Dragna</option>
+          </select>
+        </div>
+        <div class="row final">
+          <span>Grand Total</span>
+          <strong id="grandTotal">$0.00</strong>
+        </div>
+      </div>
+      <div class="note">
+        Values are saved locally in your browser.
+      </div>
+    </section>
+
+    <section class="panel receipt only-print">
+      <h2>Receipt</h2>
+      <div id="receipt"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>💖 Devloped By Ayon Ahmed</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
